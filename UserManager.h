@@ -1,5 +1,10 @@
 #pragma once
 #include <string>
+#include <vector>
+#include <iostream>
+
+#include "UsersFile.h"
+#include "User.h"
 
 using namespace std;
 
@@ -26,4 +31,4 @@ public:
 
   bool isUserLoggedIn();
   int getLoggedUserId();
-}
+};

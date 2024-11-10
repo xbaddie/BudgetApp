@@ -6,8 +6,8 @@ using namespace std;
 struct User
 {
     int id;
-    std:string firstName;
-    std:string lastName;
-    std:string login;
-    std:string password;
+    string firstName;
+    string lastName;
+    string login;
+    string password;
 };

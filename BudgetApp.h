@@ -3,8 +3,9 @@
 
 using namespace std;
 
-#include "UzytkownikMenedzer.h"
-#include "AdresatMenedzer.h"
+#include "UserManager.h"
+#include "BudgetManager.h"
+#include "Utilities.h"
 
 using namespace std;
 
@@ -14,7 +15,6 @@ class BudgetApp
     BudgetManager *budgetManager;
     const string INCOME_FILE_NAME;
     const string EXPENSE_FILE_NAME;
-    void wczytajAdresatowZalogowanegoUzytkownikaZpliku();
 
 public:
     BudgetApp(string userFileName, string incomeFileName, string expenseFileName)
@@ -28,6 +28,7 @@ public:
         budgetManager = NULL;
     }
 
+    char chooseOptionFromMainMenu();
     bool isUserLoggedIn();
     void registerUser();
     void loginUser();

@@ -1,10 +1,12 @@
 #pragma once
 
+using namespace std;
+
 struct Operation
 {
     int id;
     int userId;
     int date;
-    std:string item;
+    string item;
     double amount;
 };

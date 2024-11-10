@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 
+#include "OperationFile.h"
+#include "Operation.h"
+#include "Type.h"
+
 using namespace std;
 
 class BudgetManager
@@ -12,7 +16,7 @@ class BudgetManager
     vector <Operation> expenses;
 
     Operation addOperationDetails(const Type &type);
-    void showBalance(int startDate int endDAte);
+    void showBalance(int startDate, int endDAte);
     double calculateBalance(int startDate, int endDate, const Type &type);
 
 
