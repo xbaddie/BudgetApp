@@ -17,26 +17,26 @@ User UserManager::enterUserData()
 {
     User user;
 
-    if (users.empty()) {
-        user.id = 1;
-    } else {
-        user.id = users.back().id + 1;
-    }
+    user.id = userFile.getLastId() + 1;
 
-    string login;
 
     do
     {
         cout << "Enter login: ";
-        cin >> login;
-        user.login = login;
+        user.login = Utilities::readLine();
     }
     while (checkIfLoginExist(user.login) == true);
 
-    string password;
+
     cout << "Enter Password: ";
-    cin >> password;
-    user.password = password;
+    user.password = Utilities::readLine();
+
+    cout << "Enter First Name: ";
+    user.firstName = Utilities::readLine();
+
+
+    cout << "Enter Last Name: ";
+    user.lastName = Utilities::readLine();
 
     return user;
 }
@@ -63,7 +63,36 @@ void UserManager::registerUser()
 
 void UserManager::loginUser()
 {
+    User user;
+    string login = "", password = "";
 
+    cout << endl << "Podaj login: ";
+    login = Utilities::readLine();
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end())
+    {
+        if (itr ->login == login)
+        {
+            for (int entryAttempts = 3; entryAttempts > 0; entryAttempts--)
+            {
+                cout << "Enter password. Attempts remaining: " << entryAttempts << ": ";
+                password = Utilities::readLine();
+
+                if (itr -> password == password)
+                {
+                    cout << endl << "You have logged in." << endl << endl;
+                    system("pause");
+                    loggedUserId = itr ->id;
+                }
+            }
+            cout << "You have entered the wrong password 3 times." << endl;
+            system("pause");
+        }
+        itr++;
+    }
+    cout << "User with provided login do not exist" << endl << endl;
+    system("pause");
 }
 
 void UserManager::changeUserPassword()
@@ -78,7 +107,10 @@ void UserManager::logoutUser()
 
 bool UserManager::isUserLoggedIn()
 {
-
+    if (loggedUserId > 0)
+        return true;
+    else
+        return false;
 }
 
 int UserManager::getLoggedUserId()

@@ -5,6 +5,7 @@
 
 #include "UsersFile.h"
 #include "User.h"
+#include "Utilities.h"
 
 using namespace std;
 
