@@ -28,6 +28,7 @@ public:
         budgetManager = NULL;
     }
 
+    char chooseOptionFromUserMenu();
     char chooseOptionFromMainMenu();
     bool isUserLoggedIn();
     void registerUser();

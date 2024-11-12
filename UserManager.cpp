@@ -2,7 +2,7 @@
 
 bool UserManager::checkIfLoginExist(const string &login)
 {
-    for (int i = 0; i < users.size(); i++)
+    for (size_t i = 0; i < users.size(); i++)
     {
         if (users[i].login == login)
         {
@@ -56,9 +56,12 @@ void UserManager::registerUser()
     User user = enterUserData();
 
     users.push_back(user);
-    userFile.addUserToFile(user);
-    cout << endl << "Your account has been created." << endl << endl;
-    system("pause");
+    if (userFile.addUserToFile(user))
+    {
+        cout << endl << "Your account has been created." << endl << endl;
+        system("pause");
+    }
+
 }
 
 void UserManager::loginUser()
@@ -84,25 +87,57 @@ void UserManager::loginUser()
                     cout << endl << "You have logged in." << endl << endl;
                     system("pause");
                     loggedUserId = itr ->id;
+                    return;
                 }
             }
             cout << "You have entered the wrong password 3 times." << endl;
             system("pause");
+            return;
         }
         itr++;
     }
     cout << "User with provided login do not exist" << endl << endl;
     system("pause");
+    return;
 }
 
 void UserManager::changeUserPassword()
 {
+    string newUserPassword;
+    bool passwordChanged = false;
 
+    for (int i = 0; i <users.size(); i++)
+    {
+        if (users[i].id == loggedUserId)
+        {
+            do
+            {
+                cout << "Type in new password: ";
+                newUserPassword = Utilities::readLine();
+                cout << "Confirm password: ";
+                if (newUserPassword == Utilities::readLine())
+                {
+                    users[i].password = newUserPassword;
+                    passwordChanged = true;
+                }
+                else
+                {
+                    cout << "Passwords do not match. Try again." << endl;
+                    system("pause");
+                }
+            }
+            while (!passwordChanged);
+            if (!userFile.changePasswordInFile(loggedUserId, newUserPassword))
+            {
+                cout << "Failed to change user password";
+            }
+        }
+    }
 }
 
 void UserManager::logoutUser()
 {
-
+    loggedUserId = 0;
 }
 
 bool UserManager::isUserLoggedIn()
@@ -115,5 +150,5 @@ bool UserManager::isUserLoggedIn()
 
 int UserManager::getLoggedUserId()
 {
-
+    return loggedUserId;
 }

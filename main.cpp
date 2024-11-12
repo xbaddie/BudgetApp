@@ -6,63 +6,62 @@ using namespace std;
 
 int main()
 {
-    BudgetApp BudgetApp("users.xml","incomes.xml", "expenses.xml");
+    BudgetApp budgetApp("users.xml","incomes.xml", "expenses.xml");
 
         while (true)
     {
-        if (!BudgetApp.isUserLoggedIn())
+        if (!budgetApp.isUserLoggedIn())
         {
-            char wybor = BudgetApp.chooseOptionFromMainMenu();
+            char choice = budgetApp.chooseOptionFromMainMenu();
 
-            switch (wybor)
+            switch (choice)
             {
             case '1':
-                BudgetApp.registerUser();
+                budgetApp.registerUser();
                 break;
             case '2':
-                BudgetApp.loginUser();
+                budgetApp.loginUser();
                 break;
             case '9':
                 exit(0);
                 break;
             default:
-                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+                cout << endl << "There is no such option in the menu." << endl << endl;
                 system("pause");
                 break;
             }
         }
         else
         {
+           char choice = budgetApp.chooseOptionFromUserMenu();
 
-//           char wybor; // = ksiazkaAdresowa.wybierzOpcjeZMenuUzytkownika();
-//
-//            switch (wybor)
-//            {
-//            case '1':
-//               // ksiazkaAdresowa.dodajAdresata();
-//                break;
-//            case '2':
-//               // ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
-//                break;
-//            case '3':
-//              //  ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
-//                break;
-//            case '4':
-//               // ksiazkaAdresowa.wyswietlWszystkichAdresatow();
-//                break;
-//            case '5':
-//                //ksiazkaAdresowa.usunAdresata();
-//                break;
-//            case '6':
-//              //  ksiazkaAdresowa.edytujAdresata();
-//                break;
-//            case '7':
-//             //   ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
-//                break;
-//            case '8':
-//             //   ksiazkaAdresowa.wylogujUzytkownika();
-//                break;
-//            }
+            switch (choice)
+            {
+            case '1':
+                budgetApp.changeUserPassword();
+                break;
+            case '2':
+               // ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
+                break;
+            case '3':
+              //  ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
+                break;
+            case '4':
+               // ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+                break;
+            case '5':
+                //ksiazkaAdresowa.usunAdresata();
+                break;
+            case '6':
+              //  ksiazkaAdresowa.edytujAdresata();
+                break;
+            case '7':
+             //   ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+                break;
+            case '8':
+                budgetApp.logoutUser();
+                break;
+            }
         }
     }
     return 0;
