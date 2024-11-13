@@ -13,26 +13,26 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
         return operations;
     }
 
-    xmlFile.FindElem("Users");
+    xmlFile.FindElem("Operations");
     xmlFile.IntoElem();
 
-    while (xmlFile.FindElem("User"))
+    while (xmlFile.FindElem("Operation"))
     {
         xmlFile.IntoElem();
 
         xmlFile.FindElem("ID");
         operation.id = stoi(xmlFile.GetData());
 
-        xmlFile.FindElem("FirstName");
+        xmlFile.FindElem("UserID");
         operation.userId = xmlFile.GetData();
 
-        xmlFile.FindElem("LastName");
+        xmlFile.FindElem("Date");
         operation.date = xmlFile.GetData();
 
-        xmlFile.FindElem("Login");
+        xmlFile.FindElem("Item");
         operation.item = xmlFile.GetData();
 
-        xmlFile.FindElem("Password");
+        xmlFile.FindElem("Amount");
         operation.amount = xmlFile.GetData();
 
         users.push_back(operation);
@@ -64,10 +64,10 @@ bool  OperationFile::addOperationToFile (const Operation &operation)
     xmlFile.IntoElem();
     xmlFile.AddElem("ID", operation.id);
 
-    xmlFile.AddElem("FirstName", operation.userId);
-    xmlFile.AddElem("LastName", operation.date);
-    xmlFile.AddElem("Login", operation.item);
-    xmlFile.AddElem("Password", operation.amount);
+    xmlFile.AddElem("UserID", operation.userId);
+    xmlFile.AddElem("Date", operation.date);
+    xmlFile.AddElem("Item", operation.item);
+    xmlFile.AddElem("Amount", operation.amount);
     xmlFile.OutOfElem();
 
     if (!xmlFile.Save(getFileName()))
