@@ -12,11 +12,9 @@ using namespace std;
 class File {
     const string FILE_NAME;
 
-private:
-    friend class UserFile;
+protected:
     int lastId;
     CMarkup xmlFile;
-
     string getFileName();
 
 public:

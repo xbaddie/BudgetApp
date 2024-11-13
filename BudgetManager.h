@@ -26,6 +26,7 @@ public:
         : incomeFile(incomeFileName), expenseFile(expenseFileName), LOGGED_USER_ID(loggedUserId)
     {
         incomes = incomeFile.loadOperationsFromFile(LOGGED_USER_ID);
+        expenses = expenseFile.loadOperationsFromFile(LOGGED_USER_ID);
     };
 
     void addIncome();

@@ -12,6 +12,10 @@ void BudgetApp::registerUser()
 void BudgetApp::loginUser()
 {
     userManager.loginUser();
+    if (userManager.isUserLoggedIn())
+    {
+        budgetManager = new BudgetManager(INCOME_FILE_NAME, EXPENSE_FILE_NAME, userManager.getLoggedUserId());
+    }
 }
 
 void BudgetApp::changeUserPassword()

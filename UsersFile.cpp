@@ -5,7 +5,6 @@ vector <User> UserFile::loadUsersFromFile()
     User user;
     vector <User> users;
 
-
     if (!xmlFile.Load(getFileName()))
     {
         cerr << "Error: Could not load XML file." << endl;
@@ -37,7 +36,6 @@ vector <User> UserFile::loadUsersFromFile()
         users.push_back(user);
         xmlFile.OutOfElem();
     }
-
 
     return users;
 }
