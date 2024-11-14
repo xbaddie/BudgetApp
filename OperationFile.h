@@ -18,4 +18,5 @@ public:
     }
     vector <Operation> loadOperationsFromFile (const int loggedUserId);
     bool  addOperationToFile (const Operation &operation);
+    int getLastId() override;
 };

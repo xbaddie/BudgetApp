@@ -81,3 +81,28 @@ bool  OperationFile::addOperationToFile (const Operation &operation)
     return true;
 }
 
+int OperationFile::getLastId()
+{
+    int lastId = 0;
+
+    try {
+        if (!xmlFile.Load(getFileName())) {
+            return lastId;
+        }
+
+        xmlFile.FindElem("Operations");
+        xmlFile.IntoElem();
+
+        while (xmlFile.FindElem("Operation")) {
+            xmlFile.IntoElem();
+            xmlFile.FindElem("ID");
+            lastId = stoi(xmlFile.GetData());
+            xmlFile.OutOfElem();
+        }
+
+    } catch (const exception &caughtException) {
+        cerr << "Error getting last user ID: " << caughtException.what() << endl;
+    }
+
+    return lastId;
+}

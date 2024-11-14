@@ -21,5 +21,6 @@ public:
     File(string fileName) : FILE_NAME(fileName) {
     }
 
-    int getLastId();
+    virtual int getLastId() = 0;
+    virtual ~File() = default;
 };
