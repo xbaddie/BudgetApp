@@ -13,4 +13,11 @@
 <Login>2</Login>
 <Password>3</Password>
 </User>
+<User>
+<ID>3</ID>
+<FirstName>1</FirstName>
+<LastName>1</LastName>
+<Login>3</Login>
+<Password>3</Password>
+</User>
 </Users>

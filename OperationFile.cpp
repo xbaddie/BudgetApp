@@ -9,7 +9,6 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
 
     if (!xmlFile.Load(getFileName()))
     {
-        cerr << "Error: Could not load XML file." << endl;
         return operations;
     }
 
@@ -24,18 +23,18 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
         operation.id = stoi(xmlFile.GetData());
 
         xmlFile.FindElem("UserID");
-        operation.userId = xmlFile.GetData();
+        operation.userId = stoi(xmlFile.GetData());
 
         xmlFile.FindElem("Date");
-        operation.date = xmlFile.GetData();
+        operation.date = stoi(xmlFile.GetData());
 
         xmlFile.FindElem("Item");
         operation.item = xmlFile.GetData();
 
         xmlFile.FindElem("Amount");
-        operation.amount = xmlFile.GetData();
+        operation.amount = stoi(xmlFile.GetData());
 
-        users.push_back(operation);
+        operations.push_back(operation);
         xmlFile.OutOfElem();
     }
 
@@ -79,3 +78,4 @@ bool  OperationFile::addOperationToFile (const Operation &operation)
 
     return true;
 }
+

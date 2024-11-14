@@ -4,6 +4,9 @@
 #include "OperationFile.h"
 #include "Operation.h"
 #include "Type.h"
+#include "Utilities.h"
+#include "DateMethods.h"
+#include "CashMethods.h"
 
 using namespace std;
 

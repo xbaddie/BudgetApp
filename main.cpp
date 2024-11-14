@@ -38,7 +38,7 @@ int main()
             switch (choice)
             {
             case '1':
-                budgetApp.changeUserPassword();
+                budgetApp.addIncome();
                 break;
             case '2':
                // ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
@@ -56,7 +56,7 @@ int main()
               //  ksiazkaAdresowa.edytujAdresata();
                 break;
             case '7':
-             //   ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+                budgetApp.changeUserPassword();
                 break;
             case '8':
                 budgetApp.logoutUser();

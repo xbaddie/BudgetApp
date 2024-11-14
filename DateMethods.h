@@ -1,19 +1,23 @@
 #pragma once
 #include <string>
+#include <map>
+#include <ctime>
+#include <sstream>
+#include <iomanip>
+#include <iostream>
 
 using namespace std;
 
 class DateMethods {
-    const string FILE_NAME;
-    void calculateCurrentDate(map<string, int> &currentDate);
-    int sYearLeap(int year);
+    static void calculateCurrentDate(map<string, int> &currentDate);
+    static bool isYearLeap(int year);
 
 public:
-    bool validateDate(string &date);
-    int convertStringDateToInt(const string &dateAsString);
-    string convertIntDateToStringWithDashes(int dateAsInt);
-    int getCurrentDate();
-    int getCurrentMonthFirstDayDate();
-    int getPreviousMonthLastDayDate();
-    int getPreviousMonthFirstDayDate();
+    static bool validateDate(string &date);
+    static int convertStringDateToInt(const string &dateAsString);
+    static string convertIntDateToStringWithDashes(int dateAsInt);
+    static int getCurrentDate();
+    static int getCurrentMonthFirstDayDate();
+    static int getPreviousMonthLastDayDate();
+    static int getPreviousMonthFirstDayDate();
 };

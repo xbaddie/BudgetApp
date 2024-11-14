@@ -30,6 +30,7 @@ public:
   void changeUserPassword();
   void logoutUser();
 
+
   bool isUserLoggedIn();
   int getLoggedUserId();
 };

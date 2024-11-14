@@ -19,7 +19,6 @@ User UserManager::enterUserData()
 
     user.id = userFile.getLastId() + 1;
 
-
     do
     {
         cout << "Enter login: ";
@@ -27,13 +26,11 @@ User UserManager::enterUserData()
     }
     while (checkIfLoginExist(user.login) == true);
 
-
     cout << "Enter Password: ";
     user.password = Utilities::readLine();
 
     cout << "Enter First Name: ";
     user.firstName = Utilities::readLine();
-
 
     cout << "Enter Last Name: ";
     user.lastName = Utilities::readLine();

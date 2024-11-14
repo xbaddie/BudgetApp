@@ -77,12 +77,13 @@ char BudgetApp::chooseOptionFromUserMenu()
     system("cls");
     cout << "    >>> User Menu <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "1. Change password" << endl;
-    cout << "2. Log in" << endl;
-    cout << "9. Quit" << endl;
+    cout << "1. Add Income" << endl;
+    cout << "7. ChangePassword" << endl;
+    cout << "8. Quit" << endl;
     cout << "---------------------------" << endl;
     cout << "Choosment: ";
     choice = Utilities::getCharacter();
 
     return choice;
 }
+

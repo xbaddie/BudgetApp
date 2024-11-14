@@ -71,7 +71,6 @@ bool UserFile::addUserToFile(const User &user)
 
     if (!xmlFile.Save(getFileName()))
     {
-        cout << "Failed to save the user to the file." << endl;
         return false;
     }
 
@@ -104,3 +103,5 @@ bool UserFile::changePasswordInFile(int id, const string &password)
     }
     return false;
 }
+
+
