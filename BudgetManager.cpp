@@ -78,7 +78,7 @@ Operation BudgetManager::addOperationDetails(const Type &type)
         operation.item = "Other";
         break;
     default:
-        cout << "\nThere is no such option in the menu.\n\n";
+        cout << "There is no such option in the menu.";
         system("pause");
     }
 
@@ -88,7 +88,8 @@ Operation BudgetManager::addOperationDetails(const Type &type)
         operationAmount = Utilities::readLine();
     }
     while (!CashMethods::validateAmount(operationAmount));
-    system("pause");
+
+    operation.amount = stod(operationAmount);
 
     return operation;
 }
@@ -112,7 +113,9 @@ void BudgetManager::addIncome()
 
 void BudgetManager::addExpense()
 {
-
+    Operation expense = addOperationDetails(EXPENSE);
+    expenses.push_back(expense);
+    expenseFile.addOperationToFile(expense);
 }
 
 void BudgetManager::showCurrentMonthBalance()

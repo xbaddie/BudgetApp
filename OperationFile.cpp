@@ -32,7 +32,7 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
         operation.item = xmlFile.GetData();
 
         xmlFile.FindElem("Amount");
-        operation.amount = stoi(xmlFile.GetData());
+        operation.amount = stod(xmlFile.GetData());
 
         operations.push_back(operation);
         xmlFile.OutOfElem();
@@ -66,7 +66,9 @@ bool  OperationFile::addOperationToFile (const Operation &operation)
     xmlFile.AddElem("UserID", operation.userId);
     xmlFile.AddElem("Date", operation.date);
     xmlFile.AddElem("Item", operation.item);
-    xmlFile.AddElem("Amount", operation.amount);
+    xmlFile.AddElem("Amount", to_string(operation.amount));
+    cout << "Operationfile operation amount: " << operation.amount << endl;
+    system("pause");
     xmlFile.OutOfElem();
 
     if (!xmlFile.Save(getFileName()))

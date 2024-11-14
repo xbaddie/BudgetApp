@@ -7,7 +7,6 @@ vector <User> UserFile::loadUsersFromFile()
 
     if (!xmlFile.Load(getFileName()))
     {
-        cerr << "Error: Could not load XML file." << endl;
         return users;
     }
 

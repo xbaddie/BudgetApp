@@ -20,4 +20,11 @@
 <Login>3</Login>
 <Password>3</Password>
 </User>
+<User>
+<ID>4</ID>
+<FirstName>sdf</FirstName>
+<LastName>sdf</LastName>
+<Login>fsdf</Login>
+<Password>sdf</Password>
+</User>
 </Users>

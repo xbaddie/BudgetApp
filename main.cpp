@@ -41,7 +41,7 @@ int main()
                 budgetApp.addIncome();
                 break;
             case '2':
-               // ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
+                budgetApp.addExpense();
                 break;
             case '3':
               //  ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();

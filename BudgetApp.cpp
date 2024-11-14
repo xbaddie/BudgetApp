@@ -78,6 +78,7 @@ char BudgetApp::chooseOptionFromUserMenu()
     cout << "    >>> User Menu <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Add Income" << endl;
+    cout << "2. Add Expense" << endl;
     cout << "7. ChangePassword" << endl;
     cout << "8. Quit" << endl;
     cout << "---------------------------" << endl;
