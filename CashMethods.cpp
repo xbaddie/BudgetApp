@@ -2,18 +2,12 @@
 
 bool CashMethods::validateAmount(string &amount)
 {
-    string modifiedAmount = amount;
-    for (char &ch : modifiedAmount)
-    {
-        if (ch == ',')
-        {
-            ch = '.';
-        }
-    }
-
     bool hasDot = false;
     int decimalCount = 0;
-    for (char ch : modifiedAmount)
+
+    replaceComaWithPeriod(amount);
+
+    for (char ch : amount)
     {
         if (hasDot) decimalCount++;
         if (decimalCount > 2)
@@ -21,7 +15,7 @@ bool CashMethods::validateAmount(string &amount)
             cout << "Only 2 decimal places." << endl;
             return false;
         }
-        if (isdigit(ch) == 0)
+        if (!isdigit(ch))
         {
             if (ch == '.' && !hasDot)
             {
@@ -36,5 +30,16 @@ bool CashMethods::validateAmount(string &amount)
     }
 
     return true;
+}
+
+void CashMethods::replaceComaWithPeriod(string &amount)
+{
+    for (char &ch : amount)
+    {
+        if (ch == ',')
+        {
+            ch = '.';
+        }
+    }
 }
 

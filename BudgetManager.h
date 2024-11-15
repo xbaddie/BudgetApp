@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <algorithm>
 
 #include "OperationFile.h"
 #include "Operation.h"
@@ -7,6 +8,7 @@
 #include "Utilities.h"
 #include "DateMethods.h"
 #include "CashMethods.h"
+
 
 using namespace std;
 
@@ -26,7 +28,7 @@ class BudgetManager
 
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId)
-        : incomeFile(incomeFileName), expenseFile(expenseFileName), LOGGED_USER_ID(loggedUserId)
+        : LOGGED_USER_ID(loggedUserId), incomeFile(incomeFileName), expenseFile(expenseFileName)
     {
         incomes = incomeFile.loadOperationsFromFile(LOGGED_USER_ID);
         expenses = expenseFile.loadOperationsFromFile(LOGGED_USER_ID);

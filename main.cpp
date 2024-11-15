@@ -6,9 +6,9 @@ using namespace std;
 
 int main()
 {
-    BudgetApp budgetApp("users.xml","incomes.xml", "expenses.xml");
+    BudgetApp budgetApp("users.xml", "incomes.xml", "expenses.xml");
 
-        while (true)
+    while (true)
     {
         if (!budgetApp.isUserLoggedIn())
         {
@@ -33,7 +33,7 @@ int main()
         }
         else
         {
-           char choice = budgetApp.chooseOptionFromUserMenu();
+            char choice = budgetApp.chooseOptionFromUserMenu();
 
             switch (choice)
             {
@@ -44,21 +44,18 @@ int main()
                 budgetApp.addExpense();
                 break;
             case '3':
-              //  ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
+                budgetApp.showCurrentMonthBalance();
                 break;
             case '4':
-               // ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+                budgetApp.showPreviousMonthBalance();
                 break;
             case '5':
-                //ksiazkaAdresowa.usunAdresata();
+                budgetApp.showCustomPeriodBalance();
                 break;
             case '6':
-              //  ksiazkaAdresowa.edytujAdresata();
-                break;
-            case '7':
                 budgetApp.changeUserPassword();
                 break;
-            case '8':
+            case '9':
                 budgetApp.logoutUser();
                 break;
             }

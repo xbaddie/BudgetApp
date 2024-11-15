@@ -67,13 +67,10 @@ bool  OperationFile::addOperationToFile (const Operation &operation)
     xmlFile.AddElem("Date", operation.date);
     xmlFile.AddElem("Item", operation.item);
     xmlFile.AddElem("Amount", to_string(operation.amount));
-    cout << "Operationfile operation amount: " << operation.amount << endl;
-    system("pause");
     xmlFile.OutOfElem();
 
     if (!xmlFile.Save(getFileName()))
     {
-        cout << "Failed to save the operation to the file." << endl;
         return false;
     }
 
@@ -85,23 +82,21 @@ int OperationFile::getLastId()
 {
     int lastId = 0;
 
-    try {
-        if (!xmlFile.Load(getFileName())) {
-            return lastId;
-        }
 
-        xmlFile.FindElem("Operations");
+    if (!xmlFile.Load(getFileName()))
+    {
+        return lastId;
+    }
+
+    xmlFile.FindElem("Operations");
+    xmlFile.IntoElem();
+
+    while (xmlFile.FindElem("Operation"))
+    {
         xmlFile.IntoElem();
-
-        while (xmlFile.FindElem("Operation")) {
-            xmlFile.IntoElem();
-            xmlFile.FindElem("ID");
-            lastId = stoi(xmlFile.GetData());
-            xmlFile.OutOfElem();
-        }
-
-    } catch (const exception &caughtException) {
-        cerr << "Error getting last user ID: " << caughtException.what() << endl;
+        xmlFile.FindElem("ID");
+        lastId = stoi(xmlFile.GetData());
+        xmlFile.OutOfElem();
     }
 
     return lastId;

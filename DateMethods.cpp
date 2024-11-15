@@ -12,9 +12,12 @@ void DateMethods::calculateCurrentDate(map<string, int> &currentDate)
 
 bool DateMethods::isYearLeap(int year)
 {
-    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+    {
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
@@ -95,15 +98,59 @@ int DateMethods::getCurrentDate()
 
 int DateMethods::getCurrentMonthFirstDayDate()
 {
+    map<string, int> currentDate;
+    calculateCurrentDate(currentDate);
 
+    stringstream ss;
+    ss << setw(4) << setfill('0') << currentDate["year"]
+       << setw(2) << setfill('0') << currentDate["month"]
+       << setw(2) << setfill('0') << "01";
+
+    return stoi(ss.str());
 }
 
 int DateMethods::getPreviousMonthLastDayDate()
 {
+    map<string, int> currentDate;
+    calculateCurrentDate(currentDate);
 
+    int year = currentDate["year"];
+    int month = currentDate["month"] - 1;
+
+    if (month == 0)
+    {
+        year--;
+        month = 12;
+    }
+
+    int daysInMonth[] = {31, isYearLeap(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    stringstream ss;
+    ss << setw(4) << setfill('0') << year
+       << setw(2) << setfill('0') << month
+       << setw(2) << setfill('0') << daysInMonth[month - 1];
+
+    return stoi(ss.str());
 }
 
 int DateMethods::getPreviousMonthFirstDayDate()
 {
+    map<string, int> currentDate;
+    calculateCurrentDate(currentDate);
 
+    int year = currentDate["year"];
+    int month = currentDate["month"] - 1;
+
+    if (month == 0)
+    {
+        year--;
+        month = 12;
+    }
+
+    stringstream ss;
+    ss << setw(4) << setfill('0') << year
+       << setw(2) << setfill('0') << month
+       << setw(2) << setfill('0') << "01";
+
+    return stoi(ss.str());
 }

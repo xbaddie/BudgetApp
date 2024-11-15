@@ -44,27 +44,15 @@ Operation BudgetManager::addOperationDetails(const Type &type)
         break;
     }
 
-    if(type == INCOME)
-    {
-        cout << "Please choose income category:" << endl;
-        cout << "1. Salary" << endl;
-        cout << "2. Internet Sales" << endl;
-        cout << "3. Return on investment" << endl;
-        cout << "4. Other" << endl;
-
-    }
-    else if(type == EXPENSE)
-    {
-        cout << "Please choose expense category:" << endl;
-        cout << "1. Bills" << endl;
-        cout << "2. Food" << endl;
-        cout << "3. Investments" << endl;
-        cout << "4. Other" << endl;
-
-    }
+    cout << (type == INCOME ? "Please choose income category:" : "Please choose expense category:") << endl;
+    cout << (type == INCOME ? "1. Salary" : "1. Bills") << endl;
+    cout << (type == INCOME ? "2. Internet Sales" : "2. Food") << endl;
+    cout << (type == INCOME ? "3. Return on investment"  : "3. Investments") << endl;
+    cout << "4. Other" << endl;
 
     choice = Utilities::getCharacter();
-    switch (choice) {
+    switch (choice)
+    {
     case '1':
         operation.item = (type == INCOME) ? "Salary" : "Bills";
         break;
@@ -94,41 +82,108 @@ Operation BudgetManager::addOperationDetails(const Type &type)
     return operation;
 }
 
-void BudgetManager::showBalance(int startDate, int endDAte)
+void BudgetManager::showBalance(int startDate, int endDate)
 {
+    cout << "Balance From " << DateMethods::convertIntDateToStringWithDashes(startDate) << " TO " << DateMethods::convertIntDateToStringWithDashes(endDate) << endl;
 
+    cout << "Incomes:" << endl;
+    double incomesSum = calculateBalance(startDate, endDate, INCOME);
+    cout << "Expenses:" << endl;
+    double expensesSum = calculateBalance(startDate, endDate, EXPENSE);
+
+    cout << "Total Incomes:" << incomesSum << endl;
+    cout << "Total Expenses:" << expensesSum << endl << endl;
+    cout << "Balance:" << incomesSum - expensesSum << endl;
+
+    system("pause");
 }
 
 double BudgetManager::calculateBalance(int startDate, int endDate, const Type &type)
 {
+    double sum = 0;
+    vector<Operation> operations = (type == INCOME) ? incomes : expenses;
 
+    sort(operations.begin(), operations.end(), [](const Operation &a, const Operation &b) {
+        return a.date < b.date;
+    });
+
+    for (const Operation &operation : operations) {
+        if (operation.date >= startDate && operation.date <= endDate) {
+            cout << "ID: " << operation.id << " Transaction date: " << operation.date << " Operation: " << operation.item << " Amount: " << operation.amount << endl;
+            sum += operation.amount;
+        }
+    }
+    return sum;
 }
 
 void BudgetManager::addIncome()
 {
     Operation income = addOperationDetails(INCOME);
     incomes.push_back(income);
-    incomeFile.addOperationToFile(income);
+    if(incomeFile.addOperationToFile(income))
+    {
+        cout << "Operation added successfully." << endl;
+        system("pause");
+    }
 }
 
 void BudgetManager::addExpense()
 {
     Operation expense = addOperationDetails(EXPENSE);
     expenses.push_back(expense);
-    expenseFile.addOperationToFile(expense);
+    if(expenseFile.addOperationToFile(expense))
+    {
+        cout << "Operation added successfully" << endl;
+        system("pause");
+    }
 }
 
 void BudgetManager::showCurrentMonthBalance()
 {
+    int startDate = DateMethods::getCurrentMonthFirstDayDate();
+    int endDate = DateMethods::getCurrentDate();
 
+    showBalance(startDate, endDate);
 }
 
 void BudgetManager::showPreviousMonthBalance()
 {
+    int startDate = DateMethods::getPreviousMonthFirstDayDate();
+    int endDate = DateMethods::getPreviousMonthLastDayDate();
 
+    showBalance(startDate, endDate);
 }
 
 void BudgetManager::showCustomPeriodBalance()
 {
+    string firstDate, secondDate;
 
+    cout << "Enter the start date of the period (YYYY-MM-DD): ";
+    firstDate = Utilities::readLine();
+    while (!DateMethods::validateDate(firstDate))
+    {
+        cout << "Enter the start date of the period (YYYY-MM-DD): ";
+        firstDate = Utilities::readLine();
+    }
+
+    cout << "Enter the end date of the period (YYYY-MM-DD): ";
+    secondDate = Utilities::readLine();
+    while (!DateMethods::validateDate(secondDate))
+    {
+        cout << "Enter the end date of the period (YYYY-MM-DD): ";
+        secondDate = Utilities::readLine();
+    }
+
+    int startDate = DateMethods::convertStringDateToInt(firstDate);
+    int endDate = DateMethods::convertStringDateToInt(secondDate);
+
+    if (startDate <= endDate)
+    {
+        showBalance(startDate, endDate);
+    }
+    else
+    {
+        cout << "The start date must be earlier than the end date." << endl;
+        system("pause");
+    }
 }

@@ -2,7 +2,7 @@
 
 bool BudgetApp::isUserLoggedIn()
 {
-    userManager.isUserLoggedIn();
+   return userManager.isUserLoggedIn();
 }
 void BudgetApp::registerUser()
 {
@@ -79,8 +79,11 @@ char BudgetApp::chooseOptionFromUserMenu()
     cout << "---------------------------" << endl;
     cout << "1. Add Income" << endl;
     cout << "2. Add Expense" << endl;
-    cout << "7. ChangePassword" << endl;
-    cout << "8. Quit" << endl;
+    cout << "3. Current month balance" << endl;
+    cout << "4. Previous month balance" << endl;
+    cout << "5. Custom period balance" << endl;
+    cout << "6. ChangePassword" << endl;
+    cout << "9. Quit" << endl;
     cout << "---------------------------" << endl;
     cout << "Choosment: ";
     choice = Utilities::getCharacter();
