@@ -20,5 +20,5 @@ CMarkup: A library for parsing and manipulating XML data, used for file storage.
 Upon launching the application, you can either register a new account or log in to an existing one.  
 You can then add income and expense transactions, and the application will calculate your budget balance accordingly.  
 
-#Author
+### Author
 Norbert Hermann
