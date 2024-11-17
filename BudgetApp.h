@@ -6,6 +6,7 @@ using namespace std;
 #include "UserManager.h"
 #include "BudgetManager.h"
 #include "Utilities.h"
+#include "MenuManager.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class BudgetApp
 
 public:
     BudgetApp(string userFileName, string incomeFileName, string expenseFileName)
-    : userManager(userFileName), INCOME_FILE_NAME(incomeFileName), EXPENSE_FILE_NAME(expenseFileName)
+        : userManager(userFileName), INCOME_FILE_NAME(incomeFileName), EXPENSE_FILE_NAME(expenseFileName)
     {
         budgetManager = NULL;
     };

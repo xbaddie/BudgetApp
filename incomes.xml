@@ -69,4 +69,11 @@
 <Item>Salary</Item>
 <Amount>321.330000</Amount>
 </Operation>
+<Operation>
+<ID>11</ID>
+<UserID>3</UserID>
+<Date>20241117</Date>
+<Item>Salary</Item>
+<Amount>123.000000</Amount>
+</Operation>
 </Operations>

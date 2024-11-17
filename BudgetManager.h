@@ -8,6 +8,7 @@
 #include "Utilities.h"
 #include "DateMethods.h"
 #include "CashMethods.h"
+#include "MenuManager.h"
 
 
 using namespace std;

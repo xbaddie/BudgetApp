@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class File {
+class File
+{
     const string FILE_NAME;
 
 protected:
@@ -18,7 +19,9 @@ protected:
     string getFileName();
 
 public:
-    File(string fileName) : FILE_NAME(fileName) {
+    File(string fileName) : FILE_NAME(fileName)
+    {
+
     }
 
     virtual int getLastId() = 0;

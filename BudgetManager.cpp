@@ -4,8 +4,6 @@
 Operation BudgetManager::addOperationDetails(const Type &type)
 {
     Operation operation;
-    string inputDate, operationAmount;
-    char choice;
 
     if (type == INCOME)
     {
@@ -18,66 +16,9 @@ Operation BudgetManager::addOperationDetails(const Type &type)
 
     operation.userId = LOGGED_USER_ID;
 
-    cout << "Please choose operation date:" << endl;
-    cout << "1. Todays date" << endl;
-    cout << "2. Specific date" << endl;
-
-    choice = Utilities::getCharacter();
-
-    switch (choice)
-    {
-    case '1':
-        operation.date = DateMethods::getCurrentDate();
-        break;
-    case '2':
-        do
-        {
-            cout << "Please enter the date in YYYY-MM-DD format: ";
-            inputDate = Utilities::readLine();
-        }
-        while(!DateMethods::validateDate(inputDate));
-        operation.date = DateMethods::convertStringDateToInt(inputDate);
-        break;
-    default:
-        cout << endl << "There is no such option in the menu." << endl << endl;
-        system("pause");
-        break;
-    }
-
-    cout << (type == INCOME ? "Please choose income category:" : "Please choose expense category:") << endl;
-    cout << (type == INCOME ? "1. Salary" : "1. Bills") << endl;
-    cout << (type == INCOME ? "2. Internet Sales" : "2. Food") << endl;
-    cout << (type == INCOME ? "3. Return on investment"  : "3. Investments") << endl;
-    cout << "4. Other" << endl;
-
-    choice = Utilities::getCharacter();
-    switch (choice)
-    {
-    case '1':
-        operation.item = (type == INCOME) ? "Salary" : "Bills";
-        break;
-    case '2':
-        operation.item = (type == INCOME) ? "Internet Sales" : "Food";
-        break;
-    case '3':
-        operation.item = (type == INCOME) ? "Return on investment" : "Investments";
-        break;
-    case '4':
-        operation.item = "Other";
-        break;
-    default:
-        cout << "There is no such option in the menu.";
-        system("pause");
-    }
-
-    do
-    {
-        cout << "Please enter operation amount: ";
-        operationAmount = Utilities::readLine();
-    }
-    while (!CashMethods::validateAmount(operationAmount));
-
-    operation.amount = stod(operationAmount);
+    MenuManager::addOperationDateMenu(operation);
+    MenuManager::addOperationCategoryMenu(operation, type);
+    MenuManager::addOperationAmountMenu(operation);
 
     return operation;
 }
@@ -100,20 +41,23 @@ void BudgetManager::showBalance(int startDate, int endDate)
 
 double BudgetManager::calculateBalance(int startDate, int endDate, const Type &type)
 {
-    double sum = 0;
+    double balance = 0;
     vector<Operation> operations = (type == INCOME) ? incomes : expenses;
 
-    sort(operations.begin(), operations.end(), [](const Operation &a, const Operation &b) {
+    sort(operations.begin(), operations.end(), [](const Operation &a, const Operation &b)
+    {
         return a.date < b.date;
     });
 
-    for (const Operation &operation : operations) {
-        if (operation.date >= startDate && operation.date <= endDate) {
+    for (const Operation &operation : operations)
+    {
+        if (operation.date >= startDate && operation.date <= endDate)
+        {
             cout << "ID: " << operation.id << " Transaction date: " << operation.date << " Operation: " << operation.item << " Amount: " << operation.amount << endl;
-            sum += operation.amount;
+            balance += operation.amount;
         }
     }
-    return sum;
+    return balance;
 }
 
 void BudgetManager::addIncome()

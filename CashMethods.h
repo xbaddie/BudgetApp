@@ -4,8 +4,8 @@
 
 using namespace std;
 
-class CashMethods {
-
+class CashMethods
+{
     static void replaceComaWithPeriod(string &amount);
 
 public:

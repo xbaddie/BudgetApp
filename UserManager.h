@@ -21,16 +21,17 @@ class UserManager
     void findUserById(vector <User>::iterator &itr);
 
 public:
-    UserManager(string userFileName) : userFile(userFileName) {
+    UserManager(string userFileName) : userFile(userFileName)
+    {
         loggedUserId = 0;
         users = userFile.loadUsersFromFile();
     };
-  void registerUser();
-  void loginUser();
-  void changeUserPassword();
-  void logoutUser();
+    void registerUser();
+    void loginUser();
+    void changeUserPassword();
+    void logoutUser();
 
 
-  bool isUserLoggedIn();
-  int getLoggedUserId();
+    bool isUserLoggedIn();
+    int getLoggedUserId();
 };

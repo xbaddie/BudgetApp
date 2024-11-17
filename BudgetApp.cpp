@@ -55,39 +55,11 @@ void BudgetApp::showCustomPeriodBalance()
 
 char BudgetApp::chooseOptionFromMainMenu()
 {
-    char choice;
-
-    system("cls");
-    cout << "    >>> MENU  GLOWNE <<<" << endl;
-    cout << "---------------------------" << endl;
-    cout << "1. Register user" << endl;
-    cout << "2. Log in" << endl;
-    cout << "9. Quit" << endl;
-    cout << "---------------------------" << endl;
-    cout << "Choosment: ";
-    choice = Utilities::getCharacter();
-
-    return choice;
+    MenuManager::chooseOptionFromMainMenu();
 }
 
 char BudgetApp::chooseOptionFromUserMenu()
 {
-    char choice;
-
-    system("cls");
-    cout << "    >>> User Menu <<<" << endl;
-    cout << "---------------------------" << endl;
-    cout << "1. Add Income" << endl;
-    cout << "2. Add Expense" << endl;
-    cout << "3. Current month balance" << endl;
-    cout << "4. Previous month balance" << endl;
-    cout << "5. Custom period balance" << endl;
-    cout << "6. ChangePassword" << endl;
-    cout << "9. Quit" << endl;
-    cout << "---------------------------" << endl;
-    cout << "Choosment: ";
-    choice = Utilities::getCharacter();
-
-    return choice;
+    MenuManager::chooseOptionFromUserMenu();
 }
 

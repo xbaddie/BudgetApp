@@ -8,7 +8,8 @@
 
 using namespace std;
 
-class DateMethods {
+class DateMethods
+{
     static void calculateCurrentDate(map<string, int> &currentDate);
     static bool isYearLeap(int year);
 
